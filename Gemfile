@@ -36,12 +36,14 @@ gem 'pg', '~> 0.18.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'pry', '~> 0.10.1'
   gem 'byebug'
-  gem 'vcr', '~> 2.9.3'
+  gem 'vcr', '~> 2.9.3', require: false
   gem 'webmock', '~> 1.21.0'
   gem 'rspec-rails', '~> 3.0'
-  gem 'rr', '~> 1.1.2'
-  gem 'factory_girl_rails'
+  gem 'rr', '~> 1.1.2', require: false
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails', '~> 4.5.0'
 end
 
 group :development do

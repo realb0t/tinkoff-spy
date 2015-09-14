@@ -27,8 +27,8 @@ class RemoteRates
   #
   # @return [Array[Rate]] Массив объектов Rate
   def parse
-    data           = @parser.data
     parsed_at      = Time.now
+    data           = @parser.data
     avalible_paths = PATHS.select { |o| 
       data[o[:from]].present? && data[o[:from]][o[:to]].present? }
     

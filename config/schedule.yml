@@ -1,0 +1,4 @@
+# test_job:
+#   cron: "* * * * *"
+#   class: TestJob
+#   queue: default

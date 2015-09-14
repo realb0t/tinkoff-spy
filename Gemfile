@@ -25,8 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'pg', '~> 0.18.3'
 gem 'httparty', '~> 0.13.5'
-gem 'resque', '~> 2.0.0.pre.1', github: 'resque/resque'
-#gem 'resque-scheduler', '~> 2.0.1'
+gem 'sidekiq', '~> 3.4.2'
+gem "sidekiq-cron", "~> 0.3.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

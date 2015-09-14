@@ -1,4 +1,4 @@
-class Robot
+class RemoteRates
 
   # @param [Parser] Драйвер для парсинга
   def initialize(parser)
@@ -9,11 +9,11 @@ class Robot
   #
   # @param [Boolean] Если нужно обновление при парсинге
   # @return [Hash] Кеш с катеровками
-  def data(reload = false)
+  def rates(reload = false)
     if reload
       parse
     else
-      @data.nil? ? parse : @data
+      @rates.nil? ? parse : @rates
     end
   end
 
@@ -23,7 +23,8 @@ class Robot
   #
   # @return [Hash] Кеш с катеровками
   def parse
-    @data = @parser.data
+    data = @parser.data
+    data
   end
 
 end

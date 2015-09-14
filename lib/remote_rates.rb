@@ -1,5 +1,7 @@
 class RemoteRates
 
+  PATHS = [ { from: :USD, to: :RUB }, { from: :EUR, to: :RUB } ]
+
   # @param [Parser] Драйвер для парсинга
   def initialize(parser)
     @parser = parser
@@ -8,23 +10,32 @@ class RemoteRates
   # Возвращает данные о текущих курсах валют
   #
   # @param [Boolean] Если нужно обновление при парсинге
-  # @return [Hash] Кеш с катеровками
-  def rates(reload = false)
+  # @return [Array[Rate]] Массив объектов Rate
+  def factory(reload = true)
     if reload
       parse
     else
       @rates.nil? ? parse : @rates
     end
+  rescue Parser::Error => e
+    return []
   end
 
   protected
 
   # Парсит данные курсов валют
   #
-  # @return [Hash] Кеш с катеровками
+  # @return [Array[Rate]] Массив объектов Rate
   def parse
-    data = @parser.data
-    data
+    data           = @parser.data
+    parsed_at      = Time.now
+    avalible_paths = PATHS.select { |o| 
+      data[o[:from]].present? && data[o[:from]][o[:to]].present? }
+    
+    @rates = avalible_paths.map do |o|
+      Rate.new({
+        parsed_at: parsed_at
+      }.merge(o).merge(data[o[:from]][o[:to]]))
+    end
   end
-
 end

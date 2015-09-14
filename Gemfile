@@ -44,7 +44,7 @@ group :development, :test do
   gem 'vcr', '~> 2.9.3', require: false
   gem 'webmock', '~> 1.21.0'
   gem 'rspec-rails', '~> 3.0'
-  gem 'rr', '~> 1.1.2', require: false
+  gem 'rr', '~> 1.1.2'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails', '~> 4.5.0'
 end

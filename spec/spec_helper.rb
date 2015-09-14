@@ -1,7 +1,13 @@
+ENV["RAILS_ENV"] ||= 'test'
+VCR_MODE = {
+  depth_broker_integration: :once,
+  full_depth_broker_integration: :once,
+  full_depth_broker_integration_2: :once,
+}
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'vcr'
-require 'rr'
 
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
@@ -33,8 +39,8 @@ RSpec.configure do |config|
     c.allow_http_connections_when_no_cassette = true
     c.configure_rspec_metadata!
   end
-
   config.mock_with :rr
+  config.include FactoryGirl::Syntax::Methods
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

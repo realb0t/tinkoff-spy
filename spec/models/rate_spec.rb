@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe Rate, type: :model do
   subject { FactoryGirl.build(:rate) }
 
+  it { should be_valid }
+
   it { should have_db_column(:from).of_type(:string).with_options(null: false) }
   it { should have_db_column(:to).of_type(:string).with_options(null: false) }
   it { should have_db_column(:ask).of_type(:float).with_options(null: false, default: 0.0, unsign: true) }

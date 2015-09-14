@@ -57,3 +57,7 @@ group :development do
   gem 'spring'
 end
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-bootstrap2.3.2'
+end

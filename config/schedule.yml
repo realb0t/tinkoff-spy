@@ -1,4 +1,4 @@
-# test_job:
-#   cron: "* * * * *"
-#   class: TestJob
-#   queue: default
+load_rates_job:
+  cron: "*/5 * * * *"
+  class: LoadRatesJob
+  queue: default

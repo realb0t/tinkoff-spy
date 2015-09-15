@@ -28,4 +28,57 @@ RSpec.describe Alert, type: :model do
   it "should not be valid model without valid email" do
     build(:alert, email: "example.com").should_not be_valid
   end
+
+  describe "Scope" do
+
+    let(:def_cond) { { currency: 'USD', deal_type: 'sell' } }
+    let(:cond)     { def_cond.merge( sign: sign ) } 
+    let(:cur)      { cond[:currency] }
+    let(:deal)     { cond[:deal_type] }
+    let(:scope)    { Alert.by(cur, deal, sign, cur_val) }
+
+    context "сondition with sign \"more\" and value 5" do
+
+      let(:sign)    { 'more' }
+      let(:cur_val) { 5 }
+
+      it "should be include with value 4" do
+        alert = create(:alert, cond.merge({ value: 4 }))
+        scope.should include(alert) 
+      end
+
+      it "should not be include with value 6" do
+        alert = create(:alert, cond.merge({ value: 6 }))
+        scope.should_not include(alert) 
+      end
+
+      it "should not be include with value 5" do
+        alert = create(:alert, cond.merge({ value: 5 }))
+        scope.should_not include(alert) 
+      end
+
+    end
+
+    context "сondition with sign \"less\" and value 3" do
+
+      let(:sign)    { 'less' }
+      let(:cur_val) { 3 }
+
+      it "should be include with value 4" do
+        alert = create(:alert, cond.merge({ value: 4 }))
+        scope.should include(alert) 
+      end
+
+      it "should not be include with value 2" do
+        alert = create(:alert, cond.merge({ value: 2 }))
+        scope.should_not include(alert) 
+      end
+
+      it "should not be include with value 3" do
+        alert = create(:alert, cond.merge({ value: 3 }))
+        scope.should_not include(alert) 
+      end
+
+    end
+  end
 end

@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150914065553) do
 
   add_index "rates", ["from", "to"], name: "rates_from_to", using: :btree
   add_index "rates", ["from"], name: "rates_from", using: :btree
-  add_index "rates", ["parsed_at"], name: "rates_parsed_at", unique: true, using: :btree
+  add_index "rates", ["parsed_at"], name: "rates_parsed_at", using: :btree
   add_index "rates", ["to"], name: "rates_to", using: :btree
 
 end

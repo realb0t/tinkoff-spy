@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914065553) do
+ActiveRecord::Schema.define(version: 20150915123702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "alerts", force: :cascade do |t|
+    t.string   "currency",                 null: false
+    t.string   "deal_type",                null: false
+    t.string   "sign",                     null: false
+    t.float    "value",      default: 0.0, null: false
+    t.string   "email",                    null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "alerts", ["currency", "deal_type", "sign", "value"], name: "index_alerts_on_currency_and_deal_type_and_sign_and_value", using: :btree
 
   create_table "rates", force: :cascade do |t|
     t.string   "from",                     null: false

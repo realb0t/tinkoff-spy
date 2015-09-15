@@ -1,0 +1,7 @@
+<%= t('mailer.alert.content.body', {
+  deal: t('mailer.alert.content.deal')[@alert.deal_type.to_sym],
+  sign: t('mailer.alert.content.sign')[@alert.sign.to_sym],
+  rub: t('mailer.alert.content.rub', count: @alert.value.floor),
+  value: @alert.value,
+  currency: @alert.currency
+  }) %>

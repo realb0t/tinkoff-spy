@@ -1,0 +1,18 @@
+---
+ru:
+  mailer:
+    alert:
+      subject: Извещение о смене курсов
+      content: 
+        body: Изменился курс %{deal} по валюте %{currency}, %{sign} чем %{value} %{rub}
+        deal:
+          sell: продажи
+          buy: покупки
+        sign:
+          more: став больше
+          less: став меньше
+        rub:
+          one: рубля
+          few: рублей
+          many: рублей
+          over: рублей

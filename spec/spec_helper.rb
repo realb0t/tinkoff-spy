@@ -31,7 +31,7 @@ ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
 
-  config.expect_with(:rspec) { |c| c.syntax = :should }
+  config.expect_with(:rspec) { |c| c.syntax = [ :should, :expect ] }
   VCR.configure do |c|
     c.cassette_library_dir = 'spec/cassettes'
     c.hook_into :webmock

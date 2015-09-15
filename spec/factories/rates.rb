@@ -4,6 +4,6 @@ FactoryGirl.define do
     to "RUR"
     ask 1.5
     bid 1.5
-    parsed_at "2015-09-14 06:55:53"
+    parsed_at { Time.now }
   end
 end

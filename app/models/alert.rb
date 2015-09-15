@@ -12,4 +12,9 @@ class Alert < ActiveRecord::Base
   scope :by, -> (cur, deal, sig, val) { 
     where(deal_type: deal, currency: cur, sign: sig).by_value(sig, val)
   }
+
+  def trigger
+    AlertMailer.trigger_mail(self).deliver_now
+  end
+
 end

@@ -34,17 +34,24 @@ class Stats
   #
   # @return [Symbol]
   def forecast
-    start = daily_rates.last || yesterday_rates
+    start = daily_rates.last || yesterday_rates.last || empty_rate
     close = current.ask.to_d + current.bid / 2
     open  = start.ask.to_d + start.bid / 2
     open > close ? :bear : :bull
+  end
+
+  # Пустая ставка (для случаев когда нет ставок)
+  #
+  # @return [Rate]
+  def empty_rate
+    Rate.new(bid: 0, ask: 0)
   end
 
   # Последняя ставка по валюте
   # 
   # @return [Rate]
   def current
-    @current ||= default.first
+    @current ||= default.first || empty_rate
   end
 
   # Дневные ставки по валюте

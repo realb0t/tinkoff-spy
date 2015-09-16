@@ -2,8 +2,8 @@ FactoryGirl.define do
   factory :rate do
     from "EUR"
     to "RUR"
-    ask 1.5
-    bid 1.5
+    ask { rand(0.01..1.0) }
+    bid { rand(0.01..1.0) }
     parsed_at { Time.now }
   end
 end

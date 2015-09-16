@@ -24,10 +24,7 @@ class Rate < ActiveRecord::Base
   # Вызывае срабатывание 
   # предустоновленных оповещений
   def trigger_alert
-    Alert.by(self.from, 'sell', 'more', self.ask).map(&:trigger)
-    Alert.by(self.from, 'sell', 'less', self.ask).map(&:trigger)
-    Alert.by(self.from, 'buy', 'more', self.bid).map(&:trigger)
-    Alert.by(self.from, 'buy', 'less', self.bid).map(&:trigger)
+    AlertTriggerJob.perform_later(from, ask, bid)
   end
 
 end

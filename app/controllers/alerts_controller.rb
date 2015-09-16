@@ -3,8 +3,6 @@ class AlertsController < ApplicationController
   before_filter :find_alert, only: :show
   before_filter :ensure_json_request 
 
-  layout false
-
   def create
     @alert = Alert.new(alert_params)
     if @alert.valid? && @alert.save

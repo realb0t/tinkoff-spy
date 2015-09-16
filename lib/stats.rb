@@ -25,7 +25,7 @@ class Stats
 
   protected
 
-  # Прогноз направления курса (bear или bull)
+  # Прогноз направления курса (bear или bull или indefinitely)
   # на основе цен открытия и закрытия текущего 
   # периода (день)
   #
@@ -37,7 +37,10 @@ class Stats
     start = daily_rates.last || yesterday_rates.last || empty_rate
     close = current.ask.to_d + current.bid / 2
     open  = start.ask.to_d + start.bid / 2
-    open > close ? :bear : :bull
+
+    return :bear if open > close
+    return :bull if open < close
+    :indefinitely
   end
 
   # Пустая ставка (для случаев когда нет ставок)
@@ -58,14 +61,14 @@ class Stats
   # 
   # @return [Array[Rate]]
   def daily_rates
-    @daily_rates ||= default.where('parsed_at > ?', Time.now.beginning_of_day).to_a
+    @daily_rates ||= default.where('parsed_at >= ?', Time.now.beginning_of_day).to_a
   end
 
   # Дневные ставки по валюте
   # 
   # @return [Array[Rate]]
   def yesterday_rates
-    @yesterday_rates ||= default.where('parsed_at > ?', Time.now.yesterday.beginning_of_day).to_a
+    @yesterday_rates ||= default.where('parsed_at < ?', Time.now.beginning_of_day).where('parsed_at >= ?', Time.now.yesterday.beginning_of_day).to_a
   end
 
   def default

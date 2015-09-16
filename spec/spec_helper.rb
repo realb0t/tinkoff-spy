@@ -41,6 +41,7 @@ RSpec.configure do |config|
   end
   config.mock_with :rr
   config.include FactoryGirl::Syntax::Methods
+  config.use_transactional_fixtures = true
 
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

@@ -67,6 +67,8 @@ GEM
       railties (>= 3.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    haml (4.0.7)
+      tilt
     hitimes (1.2.2)
     httparty (0.13.5)
       json (~> 1.8)
@@ -211,6 +213,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   factory_girl_rails (~> 4.5.0)
+  haml
   httparty (~> 0.13.5)
   jbuilder (~> 2.0)
   jquery-rails

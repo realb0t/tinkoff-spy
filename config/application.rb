@@ -21,5 +21,7 @@ module Latera
       g.test_framework :rspec
       g.fixture_replacement :factory_girl
     end
+
+    config.cache_store = :dalli_store
   end
 end

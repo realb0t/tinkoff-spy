@@ -5,17 +5,20 @@
       %h3 Создание Оповещения
     .modal-body
       .form-inline
-        %select.input-medium
-          %option{ value: :USD } USD/RUB
-          %option{ value: :EUR } EUR/RUB
-        %select.input-small
+        %select.input-small#currencySelect
+          %option{ value: :USD } USD
+          %option{ value: :EUR } EUR
+        %select.input-small#dealTypeSelect
+          %option{ value: :buy } Продажа
+          %option{ value: :sell } Покупка
+        %select.input-small#signSelect
           %option{ value: :more } Больше
           %option{ value: :less } Меньше
-        %input.input-small{ type: :text, placeholder: 1.0, required: :required}
-        %input.input-medium{ type: :email, placeholder: 'mail@example.com', required: :required}
+        %input.input-small#valueInput.error{ type: :text, placeholder: 1.0, required: :required}
+        %input.input-small#emailInput{ type: :email, placeholder: 'mail@example.com', required: :required}
     .modal-footer
       %button.btn{ 'data-dismiss': :modal, 'aria-hidden': true } Отмена
-      %button#save-alert-btn.btn.btn-primary Сохранить
+      %button#saveAlertBtn.btn.btn-primary Сохранить
   .span12.text-center.action-buttons
     = link_to '/', class: "btn btn-large refresh-btn" do
       %i.icon-refresh

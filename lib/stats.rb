@@ -11,13 +11,13 @@ class Stats
           bid: current.bid, ask: current.ask
         },
         daily: {
-          bid: (daily_rates.map(&:ask).sum.to_d / daily_rates.count),
-          ask: (daily_rates.map(&:bid).sum.to_d / daily_rates.count)
+          bid: (daily_rates.map(&:ask).sum.to_d / daily_rates.count).to_f,
+          ask: (daily_rates.map(&:bid).sum.to_d / daily_rates.count).to_f
         }
       },
       spread: {
         absolute: current.absolute_spread,
-        comparative: current.comparative_spread
+        comparative: (current.comparative_spread * 100).round(1)
       },
       forecast: forecast
     }

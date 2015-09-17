@@ -26,7 +26,7 @@ class window.CurrencyView
   render: ->
     if (@stats != {})
       @$spreadAbsolute.text(+@stats.spread.absolute)
-      @$spreadComparative.text(+@stats.spread.comparative)
+      @$spreadComparative.text(+@stats.spread.comparative + '%')
       @$rateCurrentBid.text(+@stats.rate.current.bid)
       @$rateCurrentAsk.text(+@stats.rate.current.ask)
       @$rateDailyBid.text(+@stats.rate.current.bid)

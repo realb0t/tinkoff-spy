@@ -45,10 +45,22 @@
         .row-fluid
           .span6
             %h4 Текущая
-            %h3.rate-current -
+            .row-fluid
+              .span6
+                %h5 Покупка
+                %h6.rate-current.rate-current_bid -
+              .span6
+                %h5 Продажа
+                %h6.rate-current.rate-current_ask -
           .span6
             %h4 Средняя за день
-            %h3.rate-daily -
+            .row-fluid
+              .span6
+                %h5 Покупка
+                %h6.rate-daily.rate-daily_bid -
+              .span6
+                %h5 Продажа
+                %h6.rate-daily.rate-daily_ask -
   .span12.text-center.eur-stats
     %h2 
       EUR/RUB

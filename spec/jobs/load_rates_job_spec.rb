@@ -10,6 +10,10 @@ RSpec.describe LoadRatesJob, type: :job do
       Rate.should be_exist
     end
 
+    it "should not clear cash" do
+      RR.mock(Rails.cache).delete(:rates_current_stats).never
+    end
+
   end
 
   context "API is NOT avalible", vcr: { cassette_name: "tinkoff_empty", record: :once } do
@@ -18,6 +22,10 @@ RSpec.describe LoadRatesJob, type: :job do
       Rate.should_not be_exist
       described_class.perform_now
       Rate.should_not be_exist
+    end
+
+    it "should not clear cash" do
+      RR.mock(Rails.cache).delete(:rates_current_stats).once
     end
 
   end

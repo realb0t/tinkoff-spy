@@ -5,7 +5,7 @@ class LoadRatesJob < ActiveJob::Base
     parser = ::Parser::Tinkoff.new
     fabric = ::RemoteRates.new(parser)
     rates  = fabric.factory
+    Rails.cache.delete(:rates_current_stats) if rates.present?
     Rate.transaction { rates.map(&:save!) }
-    Rails.cache.delete(:rates_current_stats)
   end
 end

@@ -14,9 +14,15 @@ RSpec.describe RatesController, type: :controller do
     end
 
     context "With json format" do
-      before { get :current, format: 'json' }
+      before do
+        RR.stub.proxy(Rails.cache).fetch(:rates_current_stats, expires_in: 5.minutes).yields { |data|
+          data
+        }
+        get :current, format: 'json'
+      end
 
       it { should respond_with(:success) }
+      it { response.body.should == Stats.represent.to_json }
     end
 
   end

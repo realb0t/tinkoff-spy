@@ -1,5 +1,10 @@
 class Stats
 
+  def self.represent
+    { USD: new('USD').represent,
+      EUR: new('EUR').represent }
+  end
+
   def initialize(currency)
     @currency = currency
   end

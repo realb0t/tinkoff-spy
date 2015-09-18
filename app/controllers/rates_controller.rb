@@ -7,8 +7,7 @@ class RatesController < ApplicationController
 
   def current
     stats_json = Rails.cache.fetch(:rates_current_stats, expires_in: 5.minutes) do
-      { USD: Stats.new('USD').represent,
-        EUR: Stats.new('EUR').represent }.to_json
+      Stats.represent.to_json
     end
 
     render text: stats_json, format: :json

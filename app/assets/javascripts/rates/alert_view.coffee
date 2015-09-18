@@ -5,7 +5,9 @@ class window.AlertSaveView
     @$signSelect = $('#signSelect')
     @$valueInput = $('#valueInput')
     @$emailInput = $('#emailInput')
-    @$form       = $("#alertWin")
+    @$formWin    = $("#alertWin")
+    @$successWin = $("#successSaveWin")
+    @$failureWin = $("#failureSaveWin")
     @$saveAlert  = $("#saveAlertBtn")
     @saving = false
 
@@ -21,9 +23,10 @@ class window.AlertSaveView
       email: @$emailInput.val()
     } }
   showForm: ->
-    @$form.modal('show')
+    @$formWin.modal('show')
   save: ->
     return null if @saving
+    @$formWin.modal('hide')
     @saving = true
     $.ajax({
       url: "/alerts.json",
@@ -31,8 +34,7 @@ class window.AlertSaveView
       data: @data(),
       dataType: "json"
     })
-    .done -> alert('Saved')
-    .fail -> alert('Error')
+    .done => @$successWin.modal('show')
+    .fail => @$failureWin.modal('show')
     .always =>
-      @$form.modal('hide')
       @saving = false

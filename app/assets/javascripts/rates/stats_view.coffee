@@ -40,9 +40,9 @@ class window.CurrencyView
 
     if (@stats.forecast == 'bear')
       @$forecast.addClass('forecast.icon-arrow-up')
-      @$block.addClass('bear')
+      @$block.addClass('.forecast_bear')
     else if (@stats.forecast == 'bull')
       @$forecast.addClass('forecast.icon-arrow-down')
-      @$block.addClass('bull')
+      @$block.addClass('forecast_bull')
     else
       @$forecast.addClass('forecast.icon-refresh')

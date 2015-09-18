@@ -1,0 +1,35 @@
+.span12.text-center{ class: "#{title}-stats" }
+  %h2
+    = "#{title.upcase}/RUB"
+    %i.forecast.icon-refresh
+  .row-fluid
+    .span6
+      %h3 Спред
+      .row-fluid
+        .span6
+          %h4 Абсолютный
+          %h3.spread-absolute -
+        .span6
+          %h4 Относительный
+          %h3.spread-comparative -
+    .span6
+      %h3 Ставка
+      .row-fluid
+        .span6
+          %h4 Текущая
+          .row-fluid
+            .span6
+              %h5 Покупка
+              %h6.rate-current.rate-current_bid -
+            .span6
+              %h5 Продажа
+              %h6.rate-current.rate-current_ask -
+        .span6
+          %h4 Средняя за день
+          .row-fluid
+            .span6
+              %h5 Покупка
+              %h6.rate-daily.rate-daily_bid -
+            .span6
+              %h5 Продажа
+              %h6.rate-daily.rate-daily_ask -
